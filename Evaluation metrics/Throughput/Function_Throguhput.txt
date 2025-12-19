@@ -1,0 +1,26 @@
+let data = JSON.parse(msg.payload);
+
+// Count messages
+let count = context.get("count") || 0;
+count += 1;
+context.set("count", count);
+
+// Store start time
+let start = context.get("start") || Date.now();
+context.set("start", start);
+
+// Time elapsed in seconds
+let elapsed = (Date.now() - start) / 1000;
+
+// Messages per second
+let throughput = count / elapsed;
+
+msg.measurement = "Throughput-Test";
+
+msg.payload = {
+    msg_id: data.id,
+    throughput_mps: throughput,
+    temperature: data.temperature
+};
+
+return msg;
