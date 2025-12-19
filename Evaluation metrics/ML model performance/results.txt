@@ -1,0 +1,15 @@
+               precision    recall  f1-score   support
+
+  comfortable      1.000     0.957     0.978        23
+uncomfortable      0.955     1.000     0.977        21
+
+     accuracy                          0.977        44
+    macro avg      0.977     0.978     0.977        44
+ weighted avg      0.978     0.977     0.977        44
+
+Confusion matrix:
+[[21  0]
+ [ 1 22]]
+
+Feature importances (temperature, humidity, pressure):
+[0.353, 0.363, 0.284]
