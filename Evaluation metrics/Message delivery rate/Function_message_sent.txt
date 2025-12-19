@@ -1,0 +1,21 @@
+let data = JSON.parse(msg.payload);
+
+// Timestamp from Pico
+let ts_pico = data.ts_pico;
+
+// Timestamp when Node-RED received message
+let ts_nodered = Date.now();
+
+
+// Store arrival timestamp
+msg.payload = {
+    id: data.id,
+    ts_pico: ts_pico,
+    ts_nodered: ts_nodered,
+    temperature: data.temperature,
+    humidity: data.humidity,
+    pressure: data.pressure,
+    status: data.status
+};
+
+return msg;
