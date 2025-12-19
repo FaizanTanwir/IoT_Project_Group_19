@@ -3,14 +3,5 @@ Thermal Comfort Prediction Model for Indoor Spaces
 
 Group # 19
 
-Group Members
-
-Arshman Tariq, 
-
-Jamiual Topu,
-
-Muhammad Faizan Tanveer, 
-
-Md Nuruzzaman Faruk, 
-
-Naganandhini Somalinga Mohanlal.
+Group Members:
+Arshman Tariq, Jamiual Topu, Md Nuruzzaman Faruk, Muhammad Faizan Tanveer, Naganandhini Somalinga Mohanlal.
