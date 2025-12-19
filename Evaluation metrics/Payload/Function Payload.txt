@@ -1,0 +1,40 @@
+// msg.payload contains the JSON from Pico
+let data = JSON.parse(msg.payload);
+
+// Calculate payload size in bytes
+let payloadSize = JSON.stringify(data).length;
+
+// Initialize context variables for throughput calculation
+let count = context.get("msg_count") || 0;
+let startTime = context.get("start_time") || Date.now();
+
+// Increment message count
+count += 1;
+context.set("msg_count", count);
+
+// Time elapsed in seconds
+let elapsed = (Date.now() - startTime) / 1000;
+
+// Calculate throughput every 10 messages or 10 seconds
+let throughput = null;
+if (count >= 10 || elapsed >= 10) {
+    throughput = count / elapsed; // messages per second
+    // Reset counter
+    context.set("msg_count", 0);
+    context.set("start_time", Date.now());
+}
+
+// Prepare payload for InfluxDB or logging
+msg.measurement = "Payload_Test";
+msg.payload = {
+    temperature: parseFloat(data.temperature),
+    humidity: parseFloat(data.humidity),
+    pressure: parseFloat(data.pressure),
+    payloadSize: payloadSize,
+    throughput: throughput
+};
+
+// Optional: include timestamp for latency calculation
+msg.ts_node = Date.now();
+
+return msg;
